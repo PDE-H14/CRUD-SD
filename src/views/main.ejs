@@ -1,0 +1,131 @@
+<%- include ('partials/_header') -%>
+
+<div class="container">
+    <div class="row mt-5">        
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="author" placeholder="Autor" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="duration" placeholder="Duración" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="version" placeholder="Versión" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="label" placeholder="Album" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Guardar Canción
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/byname" method="post">
+                        <div class="form-group">
+                            <input type="text" name="byname" placeholder="Nombre" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/byauthor" method="post">
+                        <div class="form-group">
+                            <input type="text" name="byauthor" placeholder="Autor" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/byduration" method="post">
+                        <div class="form-group">
+                            <input type="text" name="byduration" placeholder="Duración" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/byversion" method="post">
+                        <div class="form-group">
+                            <input type="text" name="byversion" placeholder="Versión" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/bylabel" method="post">
+                        <div class="form-group">
+                            <input type="text" name="label" placeholder="Album" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Duración</th>
+                        <th>Versión</th>
+                        <th>Álbum</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(data){ %>
+                        <% for(var i=0; i < data.length; i++){ %>
+                            <tr>
+                                <td><%= (i+1) %></td>
+                                <td><%= data[i].name %></td>
+                                <td><%= data[i].author %></td>
+                                <td><%= data[i].duration %></td>
+                                <td><%= data[i].version %></td>
+                                <td><%= data[i].label %></td>
+                                <td>
+                                    <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                                    <a href="/update/<%= data[i].id %>" class="btn btn-info">Modificar</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }else{ %>
+                        <tr>
+                            <td>Sin Información</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') -%>
